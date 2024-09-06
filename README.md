@@ -10,6 +10,30 @@ It works by finding the parent directory containing a composer.json for a projec
 
 ## Installation
 
+### Snap
+
+On ubuntu and other supported Linux distributions, the easiest way to get `powerline-go-moodle` is to install the snap:
+
+```
+snap install powerline-go-moodle
+```
+
+Due to strict confinement of snaps, the plugin will only be able to run within your home directory by default. It can also run on volumes mounted under `/media` if you connect the removable-media plug:
+
+```
+sudo snap connect powerline-go-moodle:removable-media
+```
+
+### Pre-built binary
+
+If you have your Moodle directories in other places, a pre-built binary (currently Linux x64 only) is available on the [Releases page](https://github.com/marxjohnson/powerline-go-moodle/releases).
+
+Download the binary, put it somewhere in your `$PATH`, and run `chmod +x powerline-go-moodle` to make it executable.
+
+### Build
+
+For all other cases, you can build from source. You will need to have [go](https://go.dev/) installed.
+
 Clone this repository and run `go install`
 
 ```bash
