@@ -1,0 +1,40 @@
+name: powerline-go-moodle
+summary: A Moodle plugin for powerline-go
+description: |
+  This plugin adds a segment to powerline-go which displays the [Moodle](https://moodle.org) version the current directory belongs to.
+
+  Once installed, add `moodle` to the `-modules` argument when you configure `powerline-go` for your shell.
+  For example, for Bash, your `.bashrc` should contain something like:
+
+  ```bash
+  function _update_ps1() {
+    PS1="$($HOME/go/bin/powerline-go \
+      -error $? \
+      -jobs $(jobs -p | wc -l) \
+      -hostname-only-if-ssh \
+      -modules 'aws,cwd,git,root,exit,moodle')"
+  }
+  ```
+
+adopt-info: powerline-go-moodle
+base: core22
+
+confinement: strict
+
+apps:
+  powerline-go-moodle:
+    command: bin/powerline-go-moodle
+    plugs:
+      - home
+      - removable-media
+
+parts:
+  powerline-go-moodle:
+    plugin: go
+    build-snaps: [go/latest/stable]
+    source: https://github.com/marxjohnson/powerline-go-moodle
+    source-type: git
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version \
+      "$(git describe --long --tags --always --match=v*.*.* | sed 's/v//')"
