@@ -84,7 +84,7 @@ func main() {
 
 	segment := PowerlineSegment{
 		Name: "moodle",
-		Content: " " + releaseVersion + " ",
+		Content: releaseVersion,
 		Foreground: 15,
 		Background: 166,
 	}

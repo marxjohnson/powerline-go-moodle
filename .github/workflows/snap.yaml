@@ -34,10 +34,10 @@ jobs:
         cd moodle
         git checkout v4.4.1
         powerline-go-moodle | jq -e '.[]["name"] == "moodle"' || exit 1
-        powerline-go-moodle | jq -e '.[]["content"] == " M4.4.1 "' || exit 1
+        powerline-go-moodle | jq -e '.[]["content"] == "M4.4.1"' || exit 1
         git checkout v4.3.4
         powerline-go-moodle | jq -e '.[]["name"] == "moodle"' || exit 1
-        powerline-go-moodle | jq -e '.[]["content"] == " M4.3.4 "' || exit 1
+        powerline-go-moodle | jq -e '.[]["content"] == "M4.3.4"' || exit 1
 
   release:
     runs-on: ubuntu-latest
