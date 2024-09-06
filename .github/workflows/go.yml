@@ -6,6 +6,7 @@ name: Go
 on:
   push:
     branches: [ "main", "tests" ]
+    tags:
 
 jobs:
 
