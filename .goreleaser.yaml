@@ -1,0 +1,82 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+
+# The lines below are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/need to use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
+
+version: 2
+
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    - go generate ./...
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+
+archives:
+  - format: tar.gz
+    # this name template makes the OS and Arch compatible with the results of `uname`.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
+
+snapcrafts:
+  - name: powerline-go-moodle
+    summary: A Moodle plugin for powerline-go
+    description: |
+      This plugin adds a segment to powerline-go which displays the [Moodle](https://moodle.org) version the current directory belongs to.
+
+      Once installed, add `moodle` to the `-modules` argument when you configure `powerline-go` for your shell.
+      For example, for Bash, your `.bashrc` should contain something like:
+
+      ```bash
+      function _update_ps1() {
+        PS1="$($HOME/go/bin/powerline-go \
+        -error $? \
+        -jobs $(jobs -p | wc -l) \
+        -hostname-only-if-ssh \
+        -modules 'aws,cwd,git,root,exit,moodle')"
+      }
+      ```
+
+    base: core22
+
+    confinement: strict
+
+    publish: true
+
+    grade: stable
+
+    license: GPL-3.0-or-later
+
+    apps:
+      powerline-go-moodle:
+        command: powerline-go-moodle
+        plugs:
+          - home
+          - removable-media
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
