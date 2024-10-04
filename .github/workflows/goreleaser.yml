@@ -2,7 +2,7 @@ name: Go Releaser
 
 on:
   push:
-    branches: [ "goreleaser" ]
+    branches: ["*"]
 
 jobs:
 
