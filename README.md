@@ -10,6 +10,8 @@ It works by finding the parent directory containing a composer.json for a projec
 
 ## Installation
 
+Builds of `powerline-go-moodle` are available for Linux, MacOS and Windows on amd64, arm64 and x86 architectures.
+
 ### Snap
 
 On ubuntu and other supported Linux distributions, the easiest way to get `powerline-go-moodle` is to install the snap:
@@ -26,7 +28,7 @@ sudo snap connect powerline-go-moodle:removable-media
 
 ### Pre-built binary
 
-If you have your Moodle directories in other places, a pre-built binary (currently Linux x64 only) is available on the [Releases page](https://github.com/marxjohnson/powerline-go-moodle/releases).
+If you cannot use the snap, pre-built binaries are available on the [Releases page](https://github.com/marxjohnson/powerline-go-moodle/releases).
 
 Download the binary, put it somewhere in your `$PATH`, and run `chmod +x powerline-go-moodle` to make it executable.
 
@@ -42,14 +44,14 @@ cd powerline-go-moodle
 go install
 ```
 
-This will place the `powerline-go-moodle` binary in your `$GODIR/bin` directory. Make sure this is added to your $PATH.
+This will place the `powerline-go-moodle` binary in your `$GODIR/bin` directory. Make sure this is added to your `$PATH`.
 
 To confirm it is working, `cd` to a directory containing a Moodle codebase and run `powerline-go-moodle`
 
 ```bash
 $ cd moodle
 $ powerline-go-moodle
-[{"name":"moodle","content":" M4.5dev+ ","foreground":15,"background":166}]
+[{"name":"moodle","content":"M4.5dev+","foreground":15,"background":166}]
 ```
 
 ## Usage
